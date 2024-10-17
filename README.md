@@ -1,7 +1,7 @@
 # Learning Apache Spark - Java 17
 
 ## Run SparkCode Locally
-* Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -Dlog4j.configurationFile=classpath:log4j2.xml -jar target/spark-template-1.0-SNAPSHOT.jar`
+* Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -Dlog4j.configurationFile=classpath:log4j2.xml -jar target/spark-template-java-17.jar`
 
 ## Run SparkCode in Kubernetes
 * Run: `minikube start -p sparkoperator --driver docker --cpus 4 --memory 8192 --mount=true --mount-string=/mnt/c/sparkoperator:/minikube-host`
