@@ -1,25 +1,23 @@
 package learning.apache.spark;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SparkCode {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SparkCode.class);
+
     public static void main(String[] args) {
 
-        List<Double> inputData = new ArrayList<>();
-        inputData.add(1.1);
-        inputData.add(2.2);
-        inputData.add(3.3);
-        inputData.add(4.4);
+        System.setProperty("hadoop.home.dir", "c:/hadoop");
 
-        Logger.getLogger("org.apache").setLevel(Level.WARN);
+        List<Double> inputData = Arrays.asList(1.1, 2.2, 3.3, 4.4);
 
         SparkConf sparkConf = new SparkConf()
                 .setAppName("reduce")
@@ -31,6 +29,7 @@ public class SparkCode {
 
         System.out.println();
         System.out.println("Result: " + output);
+        LOGGER.info("Result: {}", output);
 
         javaSparkContext.close();
     }
