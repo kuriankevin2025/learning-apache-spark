@@ -1,4 +1,4 @@
-# Learning Apache Spark - Java 11
+# Learning Apache Spark - Java 8
 
 ## Run SparkCode Locally
 * Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -Dlog4j.configurationFile=classpath:log4j2.xml -jar target/spark-template-1.0-SNAPSHOT.jar`
