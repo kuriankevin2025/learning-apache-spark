@@ -9,7 +9,7 @@ spec:
   image: "apache/spark:3.5.3-scala2.12-java11-ubuntu"
   imagePullPolicy: Always
   mainClass: learning.apache.spark.SparkCode
-  mainApplicationFile: "local:///mnt/spark/work/spark-template-1.0-SNAPSHOT.jar"
+  mainApplicationFile: "local:///mnt/spark/work/spark-template-java-8.jar"
   sparkVersion: "3.5.3"
   restartPolicy:
     type: Never
