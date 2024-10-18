@@ -1,5 +1,6 @@
-package learning.apache.spark;
+package learning.apache.spark.template;
 
+import learning.apache.spark.entity.Message;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -29,6 +30,11 @@ public class SparkCode {
         System.out.println();
         System.out.println("Result: " + output);
         LOGGER.info("Result: {}", output);
+
+        Message message = new Message();
+        message.setId(1);
+        message.setData("Message Data");
+        LOGGER.info("Message: {}", message);
 
         javaSparkContext.close();
     }

@@ -9,6 +9,7 @@
 
     <modules>
         <module>spark-template</module>
+        <module>spark-entity</module>
     </modules>
 
     <properties>

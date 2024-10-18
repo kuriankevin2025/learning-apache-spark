@@ -8,8 +8,11 @@ spec:
   mode: cluster
   image: "apache/spark:3.5.3-scala2.12-java17-ubuntu"
   imagePullPolicy: Always
-  mainClass: learning.apache.spark.SparkCode
+  mainClass: learning.apache.spark.template.SparkCode
   mainApplicationFile: "local:///mnt/spark/work/spark-template-java-17.jar"
+  sparkConf:
+    spark.driver.extraClassPath: "/mnt/spark/work/libs/*"
+    spark.executor.extraClassPath: "/mnt/spark/work/libs/*"
   sparkVersion: "3.5.3"
   restartPolicy:
     type: Never
