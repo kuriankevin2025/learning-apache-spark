@@ -1,0 +1,5 @@
+WARN  : Message1
+ERROR : Message2
+FATAL : Message3
+ERROR : Message4
+WARN  : Message5

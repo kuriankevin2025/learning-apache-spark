@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>learning.apache.spark</groupId>
+        <artifactId>learning-apache-spark</artifactId>
+        <version>java-17</version>
+    </parent>
+
+    <artifactId>spark-learning</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.12</artifactId>
+            <version>3.5.3</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+
+        <!-- Log4j2 Implementation for SLF4J -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.20.0</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+    </dependencies>
+</project>

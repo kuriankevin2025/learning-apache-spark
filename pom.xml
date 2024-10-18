@@ -10,6 +10,7 @@
     <modules>
         <module>spark-template</module>
         <module>spark-entity</module>
+        <module>spark-learning</module>
     </modules>
 
     <properties>
