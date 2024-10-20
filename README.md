@@ -1,12 +1,18 @@
 # Learning Apache Spark - Java 17
 
-## Run SparkCode Locally
+## Run Spark Locally
+> SparkCode
 * Comment Out: `<excludeScope>provided</excludeScope>`
 * Build: `mvn clean install`
 * Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -cp "target/spark-template-java-17.jar;target/libs/*" learning.apache.spark.template.SparkCode`
+> SparkCodeAdvanced
+* Comment Out: `<excludeScope>provided</excludeScope>`
+* Build: `mvn clean install`
+* Uncomment: `.setMaster("local[*]")`
+* Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -cp "target/spark-template-java-17.jar;target/libs/*" learning.apache.spark.template.SparkCodeAdvanced --input=c:/sparkdata/bigLog.txt`
 
-## Run SparkCode in Kubernetes
-* Run: `minikube -p sparkoperator start --driver docker --cpus 4 --memory 8192 --mount=true --mount-string=/mnt/c/sparkoperator:/minikube-host`
+## Run Spark in Kubernetes
+* Run: `minikube -p sparkoperator start --driver docker --cpus 6 --memory 12288 --mount=true --mount-string=/mnt/c/sparkoperator:/minikube-host`
 * Run: `helm install spark-operator https://github.com/kubeflow/spark-operator/releases/download/v2.0.2/spark-operator-2.0.2.tgz --set sparkJobNamespace=default --set webhook.enable=true --set webhook.port=443 --set webhook.namespaceSelector=""`
 * Run: `watch kubectl get all -A`
 * Run: `minikube -p sparkoperator addons enable dashboard`

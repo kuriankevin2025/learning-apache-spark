@@ -4,12 +4,14 @@ metadata:
   name: spark-pi-java-17
   namespace: default
 spec:
-  type: Scala
+  type: Java
   mode: cluster
   image: "apache/spark:3.5.3-scala2.12-java17-ubuntu"
   imagePullPolicy: Always
-  mainClass: learning.apache.spark.template.SparkCode
+  mainClass: learning.apache.spark.template.SparkCodeAdvanced
   mainApplicationFile: "local:///mnt/spark/work/spark-template-java-17.jar"
+  arguments:
+    - "--input=/mnt/spark/work/bigLog.txt"
   sparkConf:
     spark.driver.extraClassPath: "/mnt/spark/work/libs/*"
     spark.executor.extraClassPath: "/mnt/spark/work/libs/*"
@@ -24,7 +26,7 @@ spec:
   driver:
     cores: 1
     coreLimit: "1200m"
-    memory: "512m"
+    memory: "1g"
     labels:
       app: spark
       version: 3.5.3
@@ -35,7 +37,7 @@ spec:
   executor:
     cores: 1
     instances: 2
-    memory: "512m"
+    memory: "1g"
     labels:
       app: spark
       version: 3.5.3
