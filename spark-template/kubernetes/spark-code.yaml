@@ -1,16 +1,17 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
-  name: spark-pi-java-17
+  name: spark-code-java-17
   namespace: default
 spec:
   type: Java
   mode: cluster
   image: "apache/spark:3.5.3-scala2.12-java17-ubuntu"
   imagePullPolicy: Always
-  mainClass: learning.apache.spark.template.SparkCodeAdvanced
+  mainClass: learning.apache.spark.template.SparkCode
   mainApplicationFile: "local:///mnt/spark/work/spark-template-java-17.jar"
   arguments:
+    - "--mode=advanced"
     - "--input=/mnt/spark/work/data/app_data.log"
   sparkConf:
     spark.driver.extraClassPath: "/mnt/spark/work/libs/*"
