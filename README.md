@@ -11,8 +11,8 @@
 * Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -cp "target/spark-template-java-17.jar;target/libs/*" learning.apache.spark.template.SparkCode`
 > SparkCodeAdvanced
 * Comment Out: `<excludeScope>provided</excludeScope>`
-* Build: `mvn clean install`
 * Add: `.setMaster("local[*]")`
+* Build: `mvn clean install`
 * Run: `java --add-exports=java.base/sun.nio.ch=ALL-UNNAMED -cp "target/spark-template-java-17.jar;target/libs/*" learning.apache.spark.template.SparkCodeAdvanced --input=c:/sparkoperator/data/app_data.log`
 
 ## Run Spark in Kubernetes
