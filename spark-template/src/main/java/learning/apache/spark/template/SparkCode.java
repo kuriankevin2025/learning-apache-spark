@@ -20,7 +20,7 @@ public class SparkCode {
         List<Double> inputData = List.of(1.1, 2.2, 3.3, 4.4);
 
         SparkConf sparkConf = new SparkConf()
-                .setAppName("reduce")
+                .setAppName("sparkCode")
                 .setMaster("local[*]");
         JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConf);
 
@@ -28,13 +28,13 @@ public class SparkCode {
         Double output = inputDataRDD.reduce(Double::sum);
 
         System.out.println();
-        System.out.println("Result: " + output);
-        LOGGER.info("Result: {}", output);
+        System.out.println("----- Result: " + output);
+        LOGGER.info("----- Result: {}", output);
 
         Message message = new Message();
         message.setId(1);
         message.setData("Message Data");
-        LOGGER.info("Message: {}", message);
+        LOGGER.info("----- Message: {}", message);
 
         javaSparkContext.close();
     }

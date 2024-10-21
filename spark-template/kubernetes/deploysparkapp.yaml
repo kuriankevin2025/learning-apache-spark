@@ -11,10 +11,12 @@ spec:
   mainClass: learning.apache.spark.template.SparkCodeAdvanced
   mainApplicationFile: "local:///mnt/spark/work/spark-template-java-17.jar"
   arguments:
-    - "--input=/mnt/spark/work/bigLog.txt"
+    - "--input=/mnt/spark/work/data/app_data.log"
   sparkConf:
     spark.driver.extraClassPath: "/mnt/spark/work/libs/*"
     spark.executor.extraClassPath: "/mnt/spark/work/libs/*"
+    spark.driver.extraJavaOptions: "-Dlog4j.configurationFile=/mnt/spark/work/logs/driver/log4j2.xml"
+    spark.executor.extraJavaOptions: "-Dlog4j.configurationFile=/mnt/spark/work/logs/executor/log4j2.xml"
   sparkVersion: "3.5.3"
   restartPolicy:
     type: Never

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+		
+		<!-- Routing Appender to create separate log files per executor -->
+        <Routing name="RoutingAppender">
+            <Routes pattern="${env:SPARK_EXECUTOR_ID}">
+                <Route>
+                    <File name="FileAppender-${env:SPARK_EXECUTOR_ID}"
+                          fileName="/mnt/spark/work/logs/executor/spark_executor_${env:SPARK_EXECUTOR_ID}.log"
+                          append="true">
+                        <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+                    </File>
+                </Route>
+            </Routes>
+        </Routing>
+    </Appenders>
+        
+
+    <Loggers>
+        <!-- Application logger -->
+        <Logger name="learning.apache.spark" level="info" additivity="false">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="RoutingAppender"/>
+        </Logger>
+        <!-- Root logger -->
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="RoutingAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

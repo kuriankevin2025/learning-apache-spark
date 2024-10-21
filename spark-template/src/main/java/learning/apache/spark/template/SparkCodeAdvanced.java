@@ -23,30 +23,17 @@ public class SparkCodeAdvanced {
         String inputFile = getInputFilePath(args);
 
         SparkConf sparkConf = new SparkConf()
-                .setAppName("loadFile");
-                //.setMaster("local[*]");
+                .setAppName("sparkCodeAdvanced");
         JavaSparkContext javaSparkContext = new JavaSparkContext(sparkConf);
 
         JavaRDD<String> inputDataRDD = javaSparkContext.textFile(inputFile);
         LOGGER.info("----- InputDataRDD Partition Size: {}", inputDataRDD.getNumPartitions());
 
-        JavaPairRDD<String, String> inputDataPairRDD = inputDataRDD.mapToPair(line -> {
-            String[] columns = line.split(":");
-            return new Tuple2<>(columns[0], columns[1]);
-        });
-        LOGGER.info("----- InputDataPairRDD Partition Size: {}", inputDataPairRDD.getNumPartitions());
+        JavaPairRDD<String, Long> inputDataPairRDD =
+                inputDataRDD.mapToPair(s -> new Tuple2<>(s.split(":")[0].trim(), 1L));
+        JavaPairRDD<String, Long> outputDataPairRDD = inputDataPairRDD.reduceByKey(Long::sum);
 
-        JavaPairRDD<String, Iterable<String>> outputDataPairRDD = inputDataPairRDD.groupByKey();
-        LOGGER.info("----- InputDataPairRDD Partition Size: {}", outputDataPairRDD.getNumPartitions());
-
-        outputDataPairRDD.foreach(r -> LOGGER.info("----- Key: {} ValueCount: {}", r._1, Iterables.size(r._2)));
-
-        // can be used to view the executor logs
-//        try {
-//            Thread.sleep(600000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+        outputDataPairRDD.foreach(r -> LOGGER.info("----- Key: {} ValueCount: {}", r._1, r._2));
 
         javaSparkContext.close();
     }
@@ -82,8 +69,8 @@ public class SparkCodeAdvanced {
             LOGGER.info("----- Input File: {}" ,inputFile);
 
         } catch (ParseException e) {
-            LOGGER.warn("Arguments: {}", Arrays.asList(args));
-            LOGGER.error("Error: ", e);
+            LOGGER.warn("----- Arguments: {}", Arrays.asList(args));
+            LOGGER.error("----- Error: ", e);
             formatter.printHelp(message, options, true);
             System.exit(1);
         }

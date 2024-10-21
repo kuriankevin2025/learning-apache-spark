@@ -5,26 +5,23 @@
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
+
+        <!-- File Appender -->
+        <File name="FileAppender" fileName="/mnt/spark/work/logs/driver/spark_driver.log" append="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
     </Appenders>
 
     <Loggers>
-        <!-- Set logging levels for specific packages -->
-        <Logger name="org.apache.spark" level="warn" additivity="false">
-            <AppenderRef ref="ConsoleAppender"/>
-        </Logger>
-        <Logger name="org.sparkproject.jetty" level="warn" additivity="false">
-            <AppenderRef ref="ConsoleAppender"/>
-        </Logger>
-        <Logger name="org.apache.hadoop" level="warn" additivity="false">
-            <AppenderRef ref="ConsoleAppender"/>
-        </Logger>
         <!-- Application logger -->
         <Logger name="learning.apache.spark" level="info" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
         </Logger>
         <!-- Root logger -->
         <Root level="info">
             <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
         </Root>
     </Loggers>
 </Configuration>
